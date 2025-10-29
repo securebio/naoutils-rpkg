@@ -28,16 +28,16 @@
 #' @param num_threads Parameter passed onto `readr::read_tsv()`
 #'
 #' @export
-read_kraken_reports <- function(files, 
+read_kraken_reports <- function(files,
                                 minimizers,
-                                id = "file", 
+                                id = "file",
                                 num_threads = 1) {
   if (minimizers) {
-    cts <- 'nnnnnccc'
+    cts <- "nnnnncic"
     cns <- kraken_col_names[1:8]
   } else {
     cns <- kraken_col_names[c(1:3, 6:8)]
-    cts <- 'nnnccc'
+    cts <- "nnncic"
   }
   if (is.null(names(files))) {
     names(files) <- files
@@ -50,9 +50,9 @@ read_kraken_reports <- function(files,
   # input is too large. In future, consider checking if furrr is installed, and
   # if so use future_map.
   files |>
-    map(\(x) readr::read_tsv(x, 
-      col_names = cns, 
-      col_types = cts, 
+    map(\(x) readr::read_tsv(x,
+      col_names = cns,
+      col_types = cts,
       comment = "#", # Allows reading Kraken inspect.txt files
       trim_ws = FALSE,
       progress = FALSE,
@@ -61,23 +61,23 @@ read_kraken_reports <- function(files,
     list_rbind(names_to = id) |>
     # Store taxonomic level info, then clean up scientific name
     mutate(
-      rank_level = scientific_name |> str_extract("^ *") |> str_length() |> 
+      rank_level = scientific_name |> str_extract("^ *") |> str_length() |>
         (\(x) x %/% 2L)(),
       across(scientific_name, \(x) str_replace(x, "^ *", ""))
     )
 }
 
 kraken_col_names <- c(
-  'clade_fragments_percent',
-  'clade_fragments',
-  'node_fragments',
-  'minimizers_total', # Used when `minimizers = TRUE`
-  'minimizers_distinct', # Used when `minimizers = TRUE`
-  'rank_code',
-  'taxid',
-  'scientific_name',
-  'rank_level', # created by `read_kraken_reports()`
-  'taxonomy' # created by `kraken_add_taxonomy()`
+  "clade_fragments_percent",
+  "clade_fragments",
+  "node_fragments",
+  "minimizers_total", # Used when `minimizers = TRUE`
+  "minimizers_distinct", # Used when `minimizers = TRUE`
+  "rank_code",
+  "taxid",
+  "scientific_name",
+  "rank_level", # created by `read_kraken_reports()`
+  "taxonomy" # created by `kraken_add_taxonomy()`
 )
 
 #' Complete a set of Kraken reports by filling in zero counts (Not tested!)
@@ -85,7 +85,7 @@ kraken_col_names <- c(
 #' This function uses `tidyr::complete()` to add rows with zeros for taxa that
 #' missing in some samples. Note: The resulting data frame will no longer be
 #' compatible with `kraken_add_taxonomy()`.
-#' 
+#'
 #' @param x A data frame of Kraken sample reports
 #' @param explicit Boolean passed to `tidyr::complete()`
 #'
@@ -93,7 +93,7 @@ kraken_col_names <- c(
 kraken_complete <- function(x, explicit = TRUE) {
   stopifnot(inherits(x, "data.frame"))
   # Fill columns are quantities for a given (sample, taxon) pair
-  fill_cols <- head(kraken_col_names, 5) |> 
+  fill_cols <- head(kraken_col_names, 5) |>
     intersect(names(x))
   fill_list <- fill_cols |>
     rep_named(0) |>
@@ -127,7 +127,7 @@ kraken_remove_nonstandard_ranks <- function(x) {
 #' Add full taxonomy path to a Kraken report data frame
 #'
 #' This function requires that rows are in the order of the original Kraken
-#' report, so cannot be used after `kraken_complete()`. 
+#' report, so cannot be used after `kraken_complete()`.
 #'
 #' You can apply this function to a data frame of Kraken reports for multiple
 #' samples; however, doing so is typically inefficient due to needing to
