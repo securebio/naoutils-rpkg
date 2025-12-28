@@ -9,6 +9,17 @@ read_porechop_log(file)
 \arguments{
 \item{file}{Path to Porechop (ABI) log file}
 }
+\value{
+A list containing:
+\itemize{
+\item \code{reads_total}: Integer. Total number of reads processed
+\item \code{reads_trimmed_start}: Integer. Number of reads with adapters trimmed from start
+\item \code{reads_trimmed_end}: Integer. Number of reads with adapters trimmed from end
+\item \code{reads_split}: Integer. Number of reads split based on middle adapters
+\item \code{adapter_matches}: Tibble with columns: adapter_set, best_start_perc, best_end_perc, selected
+\item \code{adapter_sequences}: Tibble with columns: sequence_id, sequence
+}
+}
 \description{
 Read useful information from a Porechop log file
 }

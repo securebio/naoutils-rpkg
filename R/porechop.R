@@ -1,9 +1,23 @@
-# Fucntions for working with Porechop and Porechop ABI log files
+# Functions for working with Porechop and Porechop ABI log files
 
 #' Read useful information from a Porechop log file
 #'
-#' @param file Path to Porechop (ABI) log file
+#' @param file Path to Porechop (ABI) log file
+#'
+#' @return A list containing:
+#'   * `reads_total`: Integer. Total number of reads processed
+#'   * `reads_trimmed_start`: Integer. Number of reads with adapters trimmed from start
+#'   * `reads_trimmed_end`: Integer. Number of reads with adapters trimmed from end
+#'   * `reads_split`: Integer. Number of reads split based on middle adapters
+#'   * `adapter_matches`: Tibble with columns: adapter_set, best_start_perc, best_end_perc, selected
+#'   * `adapter_sequences`: Tibble with columns: sequence_id, sequence
+#' @export
 read_porechop_log <- function(file) {
+  # Input validation
+  if (!file.exists(file)) {
+    stop("File not found: ", file)
+  }
+
   # Helper function to extract count stats with str_match and format as numbers
   extract_stats <- function(lines, pattern) {
     m <- str_match(lines, pattern)
