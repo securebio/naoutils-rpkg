@@ -1,0 +1,41 @@
+# naoutils: R package with helper functions for the NAO Team
+
+Install from within R using the
+[remotes](https://github.com/r-lib/remotes) package.
+
+From GitHub:
+
+``` r
+# install.packages('remotes')
+remotes::install_github('naobservatory/rpkg-naoutils')
+```
+
+From a local copy of this repo:
+
+``` r
+remotes::install_local('path/to/rpkg-naoutils')
+```
+
+# Package index
+
+## Import qPCR results
+
+- [`read_qpcr_amplification_csv()`](https://naobservatory.github.io/rpkg-naoutils/reference/read_qpcr_amplification_csv.md)
+  : Read qPCR 'Amplification Data' table from a CSV file
+- [`read_qpcr_results_csv()`](https://naobservatory.github.io/rpkg-naoutils/reference/read_qpcr_results_csv.md)
+  : Read qPCR 'Results' or 'Standard Curve Result' table from a CSV file
+- [`clean_common()`](https://naobservatory.github.io/rpkg-naoutils/reference/clean_common.md)
+  : Cleaning operation applied to results and amplification csv files
+
+## Import Kraken results
+
+- [`kraken_add_taxonomy()`](https://naobservatory.github.io/rpkg-naoutils/reference/kraken_add_taxonomy.md)
+  : Add full taxonomy path to a Kraken report data frame
+- [`kraken_complete()`](https://naobservatory.github.io/rpkg-naoutils/reference/kraken_complete.md)
+  : Complete a set of Kraken reports by filling in zero counts (Not
+  tested!)
+- [`kraken_remove_nonstandard_ranks()`](https://naobservatory.github.io/rpkg-naoutils/reference/kraken_remove_nonstandard_ranks.md)
+  : Remove nonstandard ranks from Kraken reports
+- [`read_kraken_reports()`](https://naobservatory.github.io/rpkg-naoutils/reference/read_kraken_reports.md)
+  : Read one or more Kraken2 sample reports
+
