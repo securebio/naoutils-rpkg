@@ -1,11 +1,14 @@
-url: https://naobservatory.github.io/rpkg-naoutils
+url: https://securebio.github.io/naoutils-rpkg
 template:
   bootstrap: 5
 reference:
-- title: "Import qPCR results"
-  contents: 
+- title: "qPCR results"
+  contents:
   - starts_with("read_qpcr")
   - clean_common
-- title: "Import Kraken results"
-  contents: 
+- title: "Kraken results"
+  contents:
   - contains("kraken")
+- title: "Sequence preprocessing stats and log files"
+  contents:
+  - read_porechop_log
