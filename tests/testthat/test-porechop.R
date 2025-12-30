@@ -7,13 +7,14 @@ test_that("read_porechop_log parses valid log file", {
   expect_named(
     result,
     c(
-      "reads_total", "reads_trimmed_start",
+      "file", "reads_total", "reads_trimmed_start",
       "reads_trimmed_end", "reads_split",
       "adapter_matches", "adapter_sequences"
     )
   )
 
   # Check types
+  expect_type(result$file, "character")
   expect_type(result$reads_total, "integer")
   expect_type(result$reads_trimmed_start, "integer")
   expect_type(result$reads_trimmed_end, "integer")
@@ -128,7 +129,7 @@ test_that("read_porechop_log handles no adapters found scenario", {
   expect_named(
     result,
     c(
-      "reads_total", "reads_trimmed_start",
+      "file", "reads_total", "reads_trimmed_start",
       "reads_trimmed_end", "reads_split",
       "adapter_matches", "adapter_sequences"
     )

@@ -12,6 +12,7 @@ read_porechop_log(file)
 \value{
 A list containing:
 \itemize{
+\item \code{file}: Character. Name of input file provided to Porechop
 \item \code{reads_total}: Integer. Total number of reads processed
 \item \code{reads_trimmed_start}: Integer. Number of reads with adapters trimmed from start
 \item \code{reads_trimmed_end}: Integer. Number of reads with adapters trimmed from end

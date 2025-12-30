@@ -5,6 +5,7 @@
 #' @param file Path to Porechop (ABI) log file
 #'
 #' @return A list containing:
+#'   * `file`: Character. Name of input file provided to Porechop
 #'   * `reads_total`: Integer. Total number of reads processed
 #'   * `reads_trimmed_start`: Integer. Number of reads with adapters trimmed from start
 #'   * `reads_trimmed_end`: Integer. Number of reads with adapters trimmed from end
@@ -177,6 +178,7 @@ read_porechop_log <- function(file) {
   }
 
   results <- list(
+    file = sample_file,
     reads_total = reads_total |> unname(),
     reads_trimmed_start = stats_start["trimmed"] |> unname(),
     reads_trimmed_end = stats_end["trimmed"] |> unname(),
