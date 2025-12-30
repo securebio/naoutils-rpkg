@@ -2,7 +2,7 @@ pandoc: 3.1.11
 pkgdown: 2.2.0
 pkgdown_sha: ~
 articles: {}
-last_built: 2025-12-30T12:07Z
+last_built: 2025-12-30T14:33Z
 urls:
-  reference: https://naobservatory.github.io/rpkg-naoutils/reference
-  article: https://naobservatory.github.io/rpkg-naoutils/articles
+  reference: https://securebio.github.io/naoutils-rpkg/reference
+  article: https://securebio.github.io/naoutils-rpkg/articles

@@ -4,7 +4,7 @@ This function uses
 [`tidyr::complete()`](https://tidyr.tidyverse.org/reference/complete.html)
 to add rows with zeros for taxa that missing in some samples. Note: The
 resulting data frame will no longer be compatible with
-[`kraken_add_taxonomy()`](https://naobservatory.github.io/rpkg-naoutils/reference/kraken_add_taxonomy.md).
+[`kraken_add_taxonomy()`](https://securebio.github.io/naoutils-rpkg/reference/kraken_add_taxonomy.md).
 
 ## Usage
 

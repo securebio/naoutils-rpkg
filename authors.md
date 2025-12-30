@@ -8,11 +8,11 @@
 ## Citation
 
 McLaren M (2025). *naoutils: Helper Functions for the NAO Team*. R
-package version 0.1.2.
+package version 0.1.2.9000.
 
     @Manual{,
       title = {naoutils: Helper Functions for the NAO Team},
       author = {Michael McLaren},
       year = {2025},
-      note = {R package version 0.1.2},
+      note = {R package version 0.1.2.9000},
     }

@@ -2,7 +2,7 @@
 
 This function requires that rows are in the order of the original Kraken
 report, so cannot be used after
-[`kraken_complete()`](https://naobservatory.github.io/rpkg-naoutils/reference/kraken_complete.md).
+[`kraken_complete()`](https://securebio.github.io/naoutils-rpkg/reference/kraken_complete.md).
 
 ## Usage
 
@@ -17,7 +17,7 @@ kraken_add_taxonomy(x)
   A data frame containing the fields "rank_code", "scientific_name", and
   "rank_level" with rows in the original order of the Kraken sample
   report(s), as returned by
-  [`read_kraken_reports()`](https://naobservatory.github.io/rpkg-naoutils/reference/read_kraken_reports.md).
+  [`read_kraken_reports()`](https://securebio.github.io/naoutils-rpkg/reference/read_kraken_reports.md).
 
 ## Details
 

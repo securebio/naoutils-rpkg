@@ -1,17 +1,18 @@
 <urlset xmlns = 'http://www.sitemaps.org/schemas/sitemap/0.9'>
-<url><loc>https://naobservatory.github.io/rpkg-naoutils/404.html</loc></url>
-<url><loc>https://naobservatory.github.io/rpkg-naoutils/LICENSE-text.html</loc></url>
-<url><loc>https://naobservatory.github.io/rpkg-naoutils/LICENSE.html</loc></url>
-<url><loc>https://naobservatory.github.io/rpkg-naoutils/authors.html</loc></url>
-<url><loc>https://naobservatory.github.io/rpkg-naoutils/index.html</loc></url>
-<url><loc>https://naobservatory.github.io/rpkg-naoutils/reference/clean_common.html</loc></url>
-<url><loc>https://naobservatory.github.io/rpkg-naoutils/reference/index.html</loc></url>
-<url><loc>https://naobservatory.github.io/rpkg-naoutils/reference/kraken_add_taxonomy.html</loc></url>
-<url><loc>https://naobservatory.github.io/rpkg-naoutils/reference/kraken_complete.html</loc></url>
-<url><loc>https://naobservatory.github.io/rpkg-naoutils/reference/kraken_remove_nonstandard_ranks.html</loc></url>
-<url><loc>https://naobservatory.github.io/rpkg-naoutils/reference/naoutils-package.html</loc></url>
-<url><loc>https://naobservatory.github.io/rpkg-naoutils/reference/read_kraken_reports.html</loc></url>
-<url><loc>https://naobservatory.github.io/rpkg-naoutils/reference/read_qpcr_amplification_csv.html</loc></url>
-<url><loc>https://naobservatory.github.io/rpkg-naoutils/reference/read_qpcr_results_csv.html</loc></url>
+<url><loc>https://securebio.github.io/naoutils-rpkg/404.html</loc></url>
+<url><loc>https://securebio.github.io/naoutils-rpkg/LICENSE-text.html</loc></url>
+<url><loc>https://securebio.github.io/naoutils-rpkg/LICENSE.html</loc></url>
+<url><loc>https://securebio.github.io/naoutils-rpkg/authors.html</loc></url>
+<url><loc>https://securebio.github.io/naoutils-rpkg/index.html</loc></url>
+<url><loc>https://securebio.github.io/naoutils-rpkg/reference/clean_common.html</loc></url>
+<url><loc>https://securebio.github.io/naoutils-rpkg/reference/index.html</loc></url>
+<url><loc>https://securebio.github.io/naoutils-rpkg/reference/kraken_add_taxonomy.html</loc></url>
+<url><loc>https://securebio.github.io/naoutils-rpkg/reference/kraken_complete.html</loc></url>
+<url><loc>https://securebio.github.io/naoutils-rpkg/reference/kraken_remove_nonstandard_ranks.html</loc></url>
+<url><loc>https://securebio.github.io/naoutils-rpkg/reference/naoutils-package.html</loc></url>
+<url><loc>https://securebio.github.io/naoutils-rpkg/reference/read_kraken_reports.html</loc></url>
+<url><loc>https://securebio.github.io/naoutils-rpkg/reference/read_porechop_log.html</loc></url>
+<url><loc>https://securebio.github.io/naoutils-rpkg/reference/read_qpcr_amplification_csv.html</loc></url>
+<url><loc>https://securebio.github.io/naoutils-rpkg/reference/read_qpcr_results_csv.html</loc></url>
 </urlset>
 
