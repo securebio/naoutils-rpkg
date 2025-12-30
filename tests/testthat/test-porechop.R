@@ -118,3 +118,60 @@ test_that("read_porechop_log returns expected values for sample file", {
   expect_true("SQK-NSK007" %in% selected_adapters)
   expect_true("SQK-MAP006 short" %in% selected_adapters)
 })
+
+test_that("read_porechop_log handles no adapters found scenario", {
+  log_file <- test_path("fixtures", "porechop_no_adapters.log")
+  result <- read_porechop_log(log_file)
+
+  # Should still have basic structure
+  expect_type(result, "list")
+  expect_named(
+    result,
+    c(
+      "reads_total", "reads_trimmed_start",
+      "reads_trimmed_end", "reads_split",
+      "adapter_matches", "adapter_sequences"
+    )
+  )
+
+  # All trimming counts should be 0
+  expect_equal(result$reads_trimmed_start, 0)
+  expect_equal(result$reads_trimmed_end, 0)
+  expect_equal(result$reads_split, 0)
+
+  # adapter_matches should exist but none selected
+  expect_gt(nrow(result$adapter_matches), 0)
+  expect_false(any(result$adapter_matches$selected))
+
+  # adapter_sequences should be empty
+  expect_equal(nrow(result$adapter_sequences), 0)
+})
+
+test_that("read_porechop_log no adapters has correct total", {
+  log_file <- test_path("fixtures", "porechop_no_adapters.log")
+  result <- read_porechop_log(log_file)
+
+  # Should have non-zero total reads (696,944 from the fixture)
+  expect_gt(result$reads_total, 0)
+  expect_equal(result$reads_total, 696944)
+})
+
+test_that("read_porechop_log no adapters has valid adapter table structure", {
+  log_file <- test_path("fixtures", "porechop_no_adapters.log")
+  result <- read_porechop_log(log_file)
+
+  # adapter_matches should have correct columns
+  expect_true(
+    all(c("adapter_set", "best_start_perc", "best_end_perc", "selected") %in%
+      names(result$adapter_matches))
+  )
+
+  # All adapters should have selected = FALSE
+  expect_true(all(!result$adapter_matches$selected))
+
+  # Percentages should still be valid
+  expect_true(all(result$adapter_matches$best_start_perc >= 0))
+  expect_true(all(result$adapter_matches$best_start_perc <= 100))
+  expect_true(all(result$adapter_matches$best_end_perc >= 0))
+  expect_true(all(result$adapter_matches$best_end_perc <= 100))
+})
