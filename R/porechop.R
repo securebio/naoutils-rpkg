@@ -44,7 +44,6 @@ read_porechop_log <- function(file) {
   lines <-  file |>
     readr::read_file() |>
     str_replace_all("\r", "\n") |>
-    I() |>
     readr::read_lines() |>
     str_subset("^$", negate = TRUE) |>
     trimws()
