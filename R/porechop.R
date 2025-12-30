@@ -14,12 +14,10 @@
 #'   * `adapter_sequences`: Tibble with columns: sequence_id, sequence
 #' @export
 read_porechop_log <- function(file) {
-  # Input validation
   if (!file.exists(file)) {
     stop("File not found: ", file)
   }
 
-  # Regex patterns for extracting statistics
   PATTERN_READS_LOADED <- "(?<total>[[:digit:],]+) reads loaded"
   PATTERN_START_TRIM <- "(?<trimmed>[[:digit:],]+) / (?<total>[[:digit:],]+) reads had adapters trimmed from their start \\((?<bp>[[:digit:],]+) bp removed\\)"
   PATTERN_END_TRIM <- "(?<trimmed>[[:digit:],]+) / (?<total>[[:digit:],]+) reads had adapters trimmed from their end \\((?<bp>[[:digit:],]+) bp removed\\)"
@@ -55,7 +53,6 @@ read_porechop_log <- function(file) {
   lines <- lines |>
     cli::ansi_strip()
 
-  # Check if no adapters were found
   no_adapters_found <- any(str_detect(lines, PATTERN_NO_ADAPTERS))
 
   # The table with sequence identities for known adapter sets can be found from
@@ -67,10 +64,8 @@ read_porechop_log <- function(file) {
   }
 
   if (no_adapters_found) {
-    # Table ends at "No adapters found" message
     idx_adapter_table_end <- str_which(lines, PATTERN_NO_ADAPTERS)
   } else {
-    # Table ends at trimming section
     idx_adapter_table_end <- str_which(lines, PATTERN_TRIMMING_SECTION)
     if (length(idx_adapter_table_end) == 0) {
       stop("Could not find adapter trimming section in log file. ",
@@ -93,7 +88,6 @@ read_porechop_log <- function(file) {
   # Adapter sequences used for trimming are between the message indicating that
   # adapter trimming is starting and the first progress indicator
   if (no_adapters_found) {
-    # No trimming occurred, return empty sequences
     trimming_sequences <- tibble(
       sequence_id = character(0),
       sequence = character(0)
@@ -130,7 +124,6 @@ read_porechop_log <- function(file) {
 
   # Extract trimming statistics (or set to 0 if no adapters found)
   if (no_adapters_found) {
-    # No trimming statistics, set all to 0
     stats_start <- c(trimmed = 0L, total = reads_total, bp = 0L)
     stats_end <- c(trimmed = 0L, total = reads_total, bp = 0L)
     stats_middle <- c(trimmed = 0L, total = reads_total)
@@ -144,7 +137,6 @@ read_porechop_log <- function(file) {
            "Expected pattern: '", PATTERN_START_TRIM, "'")
     }
 
-    # Reads with adapters trimmed from end: Parse similar to start stats
     stats_end <- extract_stats(lines, PATTERN_END_TRIM)
     if (length(stats_end) == 0) {
       stop("Could not find end trimming statistics in log file. ",
